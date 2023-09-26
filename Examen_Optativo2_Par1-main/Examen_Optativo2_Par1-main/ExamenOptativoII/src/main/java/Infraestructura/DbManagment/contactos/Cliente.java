@@ -25,9 +25,9 @@ public class Cliente {
 
         try {
             conexion.setQuerySQL(conexion.conexionDB().createStatement());
-            boolean execute = conexion.getQuerySQL().execute("INSERT INTO cliente("+ "id_cliente , " +
-                    "departamento , " +
-                    "codigo_postal  )" +
+            boolean execute = conexion.getQuerySQL().execute("INSERT INTO cliente("+ "'id_cliente ', " +
+                    "'departamento' , " +
+                    "'codigo_postal'  )" +
                     "values(" +
                     cliente.IdCliente+ " , "+
                     cliente.IdPersona  + " ," +
@@ -46,11 +46,11 @@ public class Cliente {
         try {
             conexion.setQuerySQL(conexion.conexionDB().createStatement());
             boolean execute = conexion.getQuerySQL().execute("UPDATE cliente SET " +
-                    "id_persona' = '" + cliente.IdPersona + "'," +
-                    "fecha_ingreso ' = '" +cliente.FechaIngreso + "'," +
-                    "calificacion ' = '" + cliente.Calificacion+ "'," +
-                    "estado = '" + cliente.Estado+ "'," 
-                    + "' Where cliente.id_cliente = " + cliente.IdCliente);
+                    "'id_persona =' " + cliente.IdPersona + "',' " +
+                    "'fecha_ingreso  =' " +cliente.FechaIngreso + "',' " +
+                    "'calificacion  =' " + cliente.Calificacion+ "', '" +
+                    "'estado = '" + cliente.Estado+ "', '"
+                    + "' Where cliente.id_cliente = '" + cliente.IdCliente);
             conexion.conexionDB().close();
             return "Los datos de la cliente con id " + cliente.IdCliente + " fue modificado exitosamente";
         } catch (SQLException e) {

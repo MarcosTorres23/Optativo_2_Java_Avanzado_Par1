@@ -55,13 +55,13 @@ public class Personas {
             conexion.setQuerySQL(conexion.conexionDB().createStatement());
             boolean execute = conexion.getQuerySQL().execute("UPDATE personas SET " +
                     "'id_ciudad = '" + persona.IdCiudad + "','" +
-                    "'nombre = '" + persona.Nombre + "',' " +
-                    "'apellido = '" + persona.Apellido + "','" +
-                    "'tipo_documento = '" + persona.TipoDocumento + "', '" +
-                    "'nro_documento = '" + persona.NroDocumento + "', '" +
-                    "'direccion = '" + persona.Direccion + "', '" +
-                    "'celular = '" + persona.Celular + "', '" +
-                    "'email = '" + persona.Email + "',' "
+                    " 'nombre = '" + persona.Nombre + "',' " +
+                    " ' apellido = '" + persona.Apellido + "','" +
+                    " ' tipo_documento = '" + persona.TipoDocumento + "', '" +
+                    " 'nro_documento = '" + persona.NroDocumento + "', '" +
+                    " 'direccion = '" + persona.Direccion + "', '" +
+                    " 'celular = '" + persona.Celular + "', '" +
+                    " 'email = '" + persona.Email + "',' "
                     + "' Where personas.idPersona = '" + persona.IdPersona);
             conexion.conexionDB().close();
             return "Los datos de la persona " + persona.Nombre + " fue modificado exitosamente";

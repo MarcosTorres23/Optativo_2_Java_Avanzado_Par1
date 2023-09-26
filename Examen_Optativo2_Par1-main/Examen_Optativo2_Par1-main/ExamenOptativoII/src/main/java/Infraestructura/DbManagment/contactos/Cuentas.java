@@ -26,28 +26,28 @@ public class Cuentas {
         try {
             conexion.setQuerySQL(conexion.conexionDB().createStatement());
             boolean execute = conexion.getQuerySQL().execute("INSERT INTO cuentas(" +
-                    "id_cuentas, " +
-                    "id_cliente, " +
-                    "nrocuenta, " +
-                    "fecha_alta, " +
-                    "tipo_cuent, " +
-                    "estado, " +
-                    "saldo, " +
-                    "nrocontrato, " +
-                    "costo_mantenimiento, " +
-                    "promedio_acreditacion, " +
-                    "modeda, )" +
+                    "'id_cuentas,' " +
+                    "'id_cliente,' " +
+                    "'nrocuenta,' " +
+                    "'fecha_alta,' " +
+                    "'tipo_cuent,' " +
+                    "'estado, ' " +
+                    "'saldo ,' " +
+                    "'nrocontrato,' " +
+                    "'costo_mantenimiento, ' " +
+                    "'promedio_acreditacion,' " +
+                    "'modeda' )" +
                     "values(" +
-                    cuentas.IdCuenta+ ","+
-                    cuentas.IdCliente  + "," +
-                    cuentas.NroCuenta +"," +
-                    cuentas.FechaAlta  + ","+
-                    cuentas.TipoCuenta  + ","+
-                    cuentas.Estado + ","+
-                    cuentas.Saldo  + ","+
-                    cuentas.NroContrato  + ","+
-                    cuentas.CostoMantenimiento  + ","+
-                    cuentas.PromedioAcreditacion  + ","+
+                    cuentas.IdCuenta+ "','"+
+                    cuentas.IdCliente  + "','" +
+                    cuentas.NroCuenta +"','" +
+                    cuentas.FechaAlta  + "','"+
+                    cuentas.TipoCuenta  + "','"+
+                    cuentas.Estado + "','"+
+                    cuentas.Saldo  + "','"+
+                    cuentas.NroContrato  + "','"+
+                    cuentas.CostoMantenimiento  + "' ,' "+
+                    cuentas.PromedioAcreditacion  + " ',' "+
                     cuentas.Moneda+ ")");
             conexion.conexionDB().close();
             return "La Cuenta " + cuentas.IdCuenta + " fue registrada exitosamente";
@@ -60,7 +60,7 @@ public class Cuentas {
 
         try {
             conexion.setQuerySQL(conexion.conexionDB().createStatement());
-            boolean execute = conexion.getQuerySQL().execute("UPDATE cuentas SET " +
+            boolean execute = conexion.getQuerySQL().execute("'UPDATE cuentas SET' " +
                     "id_cliente' = '" + cuenta.IdCliente+ "'," +
                     "nrocuenta' = '" + cuenta.NroCuenta + "'," +
                     "fecha_alta' = '" + cuenta.FechaAlta + "'," +

@@ -26,10 +26,10 @@ public class Ciudad {
         try {
             conexion.setQuerySQL(conexion.conexionDB().createStatement());
             boolean execute = conexion.getQuerySQL().execute("INSERT INTO ciudades( "+
-                    "id_ciudad ,"+
-                    " ciudad , " +
-                    "departamento , " +
-                    "codigo_postal, )" +
+                    "'id_ciuda' ,"+
+                    " 'ciudad ', " +
+                    "'departamento' , " +
+                    "'codigo_postal', )" +
                     "values(" +
                     ciudad.Idciudad+ ","+
                     ciudad.Nombre_ciudad + ","+

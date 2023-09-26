@@ -60,15 +60,15 @@ public class Movimientos {
             conexion.setQuerySQL(conexion.conexionDB().createStatement());
             boolean execute = conexion.getQuerySQL().execute("UPDATE cuentas SET " +
                     "'id_cuenta = '" + movimiento.IdCuenta + "', '" +
-                    "'fecha_movimiento = '" + movimiento.FechaMovimiento + "', '" +
-                    "'tipo_movimiento = '" + movimiento.TipoMovimiento + "', '" +
-                    "'saldo_anterior = '" + movimiento.Saldoanterior+ "', '" +
-                    "'saldo_actual = '" + movimiento.Saldoactual + "', '" +
-                    "'monto_movimiento  = '" + movimiento.Montomovimiento + "','" +
-                    "'cuenta_origen = '" + movimiento.CuentaOrigen + "', '" +
-                    "'cuenta_destino = '" + movimiento.CuentaDestino+ "', '" +
+                    "' fecha_movimiento = ' " + movimiento.FechaMovimiento + " ', ' " +
+                    "' tipo_movimiento = ' " + movimiento.TipoMovimiento + " ' , ' " +
+                    " 'saldo_anterior = '" + movimiento.Saldoanterior+ " ' , ' " +
+                    "'saldo_actual = ' " + movimiento.Saldoactual + " ', ' " +
+                    "'monto_movimiento  = '" + movimiento.Montomovimiento + " ',' " +
+                    "'cuenta_origen = '" + movimiento.CuentaOrigen + " ', ' " +
+                    "'cuenta_destino = '" + movimiento.CuentaDestino+ "  ',' " +
                     "'canal = '" + movimiento.Canal+ "', '"
-                  + "' Where cliente.id_cliente = '" + movimiento.IdMovimiento);
+                  + " ' Where cliente.id_cliente = '" + movimiento.IdMovimiento);
             conexion.conexionDB().close();
             return "Los datos del movimient con id,  " + movimiento.IdMovimiento + " fue modificado exitosamente";
         } catch (SQLException e) {
@@ -80,7 +80,7 @@ public class Movimientos {
         Movimientos_models movimiento = new Movimientos_models();
         try {
             conexion.setQuerySQL(conexion.conexionDB().createStatement());
-            conexion.setResultadoQuery(conexion.getQuerySQL().executeQuery("Select * from movimientos where id_cuenta= " + id));
+            conexion.setResultadoQuery(conexion.getQuerySQL().executeQuery("'Select * from movimientos where id_cuenta= '" + id));
             if(conexion.getResultadoQuery().next()){
                 movimiento.IdCuenta = conexion.getResultadoQuery().getInt("id_cuenta");
                 movimiento.FechaMovimiento = conexion.getResultadoQuery().getDate("fecha_movimiento");
