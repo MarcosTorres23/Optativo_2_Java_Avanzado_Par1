@@ -1,5 +1,8 @@
+Infraestructura\Coneciones\ConeccionDB.class
+Infraestructura\Modelos\Persona_modelo.class
+Infraestructura\Modelos\Cliente_modelo.class
+Presentaciones\contactos\Buscarpersona.class
+Presentaciones\contactos\Buscarpersona$1.class
+Presentaciones\contactos\Buscarpersona$2.class
 Infraestructura\Modelos\Ciudad_modelo.class
 optativo2examen\ExamenOptativoII.class
-Infraestructura\Modelos\Persona_modelo.class
-Infraestructura\Coneciones\ConeccionDB.class
-Infraestructura\Modelos\Cliente_modelo.class

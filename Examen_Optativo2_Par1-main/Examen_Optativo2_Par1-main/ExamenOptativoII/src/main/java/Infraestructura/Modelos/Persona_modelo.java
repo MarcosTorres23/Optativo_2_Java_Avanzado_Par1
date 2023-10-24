@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Infraestructura.Modelos;
+
+import java.util.Date;
+
 /**
  *
  * @author User
@@ -18,6 +21,7 @@ public class Persona_modelo {
     public String Celular;
     public String Email;
     public String estado;
+    public Date fecha;
 
 }
     

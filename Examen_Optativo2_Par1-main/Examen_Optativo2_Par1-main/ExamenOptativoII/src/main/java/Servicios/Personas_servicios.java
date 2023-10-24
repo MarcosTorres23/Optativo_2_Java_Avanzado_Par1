@@ -36,7 +36,11 @@ public class Personas_servicios {
     public Persona_modelo consultarPersonaPorId(int id){
         return  personasDB.consultarPersona(id);
     }
+    public Persona_modelo consultarPersonaPorDocumento(int documento){
+        return  personasDB.consultarPersonaPorDocumento(documento);
+    }
 
+    
     private boolean validarDatos(Persona_modelo persona) {
         try {
         if(persona.Nombre.trim().isEmpty())
