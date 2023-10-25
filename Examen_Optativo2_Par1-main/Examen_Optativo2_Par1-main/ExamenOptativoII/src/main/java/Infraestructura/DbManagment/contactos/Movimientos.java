@@ -80,17 +80,17 @@ public class Movimientos {
         Movimientos_models movimiento = new Movimientos_models();
         try {
             conexion.setQuerySQL(conexion.conexionDB().createStatement());
-            conexion.setResultadoQuery(conexion.getQuerySQL().executeQuery("'Select * from movimientos where id_cuenta= '" + id));
+            conexion.setResultadoQuery(conexion.getQuerySQL().executeQuery("Select * from movimientos where id_movimiento= " + id));
             if(conexion.getResultadoQuery().next()){
                 movimiento.IdCuenta = conexion.getResultadoQuery().getInt("id_cuenta");
                 movimiento.FechaMovimiento = conexion.getResultadoQuery().getDate("fecha_movimiento");
                 movimiento.TipoMovimiento = conexion.getResultadoQuery().getString("tipo_movimiento");
-                movimiento.Saldoanterior = conexion.getResultadoQuery().getFloat("saldo_anterior");
-                movimiento.Saldoactual = conexion.getResultadoQuery().getFloat("saldo_actual");
-                movimiento.Montomovimiento = conexion.getResultadoQuery().getFloat("monto_movimiento");
-                movimiento.CuentaOrigen = conexion.getResultadoQuery().getFloat("cuenta_origen");
-                movimiento.CuentaDestino = conexion.getResultadoQuery().getFloat("cuenta_destino");
-                movimiento.Canal= conexion.getResultadoQuery().getFloat("canal");
+                movimiento.Saldoanterior = conexion.getResultadoQuery().getString("saldo_anterior");
+                movimiento.Saldoactual = conexion.getResultadoQuery().getString("saldo_actual");
+                movimiento.Montomovimiento = conexion.getResultadoQuery().getString("monto_movimiento");
+                movimiento.CuentaOrigen = conexion.getResultadoQuery().getString("cuenta_origen");
+                movimiento.CuentaDestino = conexion.getResultadoQuery().getString("cuenta_destino");
+                movimiento.Canal= conexion.getResultadoQuery().getString("canal");
                 
                 return movimiento;
             }

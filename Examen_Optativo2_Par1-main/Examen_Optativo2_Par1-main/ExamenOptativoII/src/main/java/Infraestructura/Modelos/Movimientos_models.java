@@ -15,11 +15,11 @@ public class Movimientos_models {
     public int IdMovimiento;
     public Date FechaMovimiento;
     public String TipoMovimiento;
-    public Float Saldoanterior;
-    public Float Saldoactual;
-    public Float Montomovimiento;
-    public Float CuentaOrigen;
-    public Float CuentaDestino;
-    public Float Canal;  
+    public String Saldoanterior;
+    public String Saldoactual;
+    public String Montomovimiento;
+    public String CuentaOrigen;
+    public String CuentaDestino;
+    public String Canal;  
     
 }

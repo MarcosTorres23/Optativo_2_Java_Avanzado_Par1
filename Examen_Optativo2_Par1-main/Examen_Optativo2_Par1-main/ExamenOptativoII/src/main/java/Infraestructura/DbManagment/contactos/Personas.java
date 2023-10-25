@@ -102,7 +102,7 @@ public class Personas {
         Persona_modelo persona = new Persona_modelo();
         try {
             conexion.setQuerySQL(conexion.conexionDB().createStatement());
-            conexion.setResultadoQuery(conexion.getQuerySQL().executeQuery("Select * from persona where nrodocumento = " + documento));
+            conexion.setResultadoQuery(conexion.getQuerySQL().executeQuery("Select * from persona where nro_documento = " + documento));
             if(conexion.getResultadoQuery().next()){
                 persona.IdCiudad= conexion.getResultadoQuery().getInt("id_ciudad");
                 persona.Nombre = conexion.getResultadoQuery().getString("nombre");

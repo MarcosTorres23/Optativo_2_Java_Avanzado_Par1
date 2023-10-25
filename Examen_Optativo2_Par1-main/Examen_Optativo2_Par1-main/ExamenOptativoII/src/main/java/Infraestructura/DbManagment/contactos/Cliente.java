@@ -62,7 +62,7 @@ public class Cliente {
         Cliente_modelo cliente = new Cliente_modelo();
         try {
             conexion.setQuerySQL(conexion.conexionDB().createStatement());
-            conexion.setResultadoQuery(conexion.getQuerySQL().executeQuery("Select * from c liente where id_cliente = " + id));
+            conexion.setResultadoQuery(conexion.getQuerySQL().executeQuery("Select * from cliente where id_cliente = " + id));
             if(conexion.getResultadoQuery().next()){
                 cliente.IdCliente = conexion.getResultadoQuery().getInt("id_cliente");
                 cliente.IdPersona = conexion.getResultadoQuery().getInt("id_persona");
@@ -77,6 +77,5 @@ public class Cliente {
         }
         return null;
     }
-
     
 }

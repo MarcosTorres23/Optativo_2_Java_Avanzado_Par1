@@ -64,6 +64,7 @@ public class Ciudad {
             if(conexion.getResultadoQuery().next()){
                 ciudad.Nombre_ciudad = conexion.getResultadoQuery().getString("ciudad");    
                 ciudad.Departamento = conexion.getResultadoQuery().getString("departamento");
+                ciudad.Codigopostal = conexion.getResultadoQuery().getString("code_postal");
                 
 /*                ciudad.Codigopostal = conexion.getResultadoQuery().getInt("codigo_postal"); Definido como numeric
 */

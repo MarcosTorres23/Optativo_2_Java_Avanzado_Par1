@@ -13,6 +13,6 @@ public class Ciudad_modelo {
      public int Idciudad;
     public String Nombre_ciudad;
     public String Departamento;
-    public int Codigopostal;
+    public String Codigopostal;
    
 }

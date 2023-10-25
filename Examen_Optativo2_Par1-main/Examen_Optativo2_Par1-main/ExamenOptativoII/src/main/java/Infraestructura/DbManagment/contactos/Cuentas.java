@@ -79,6 +79,7 @@ public class Cuentas {
         }
     }
      
+     
      public Cuentas_modelo consultarCuentas(int id){
         Cuentas_modelo cuenta = new Cuentas_modelo();
         try {

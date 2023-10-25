@@ -26,7 +26,7 @@ import javax.swing.JOptionPane;
         personaService = new Personas_servicios("postgres", "0000", "localhost", "5432", "BaseDatos_Examen_OptativoII");
     }
 
-    private void ConsultarCliente(String filtrarPor, String filtro) {
+    private void ConsultarPersona(String filtrarPor, String filtro) {
         switch (filtrarPor) {
             case "id":
                 cargarDatos(personaService.consultarPersonaPorId(Integer.parseInt(filtro)));
@@ -186,7 +186,6 @@ import javax.swing.JOptionPane;
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1)
-                    .addComponent(tituloPrincipal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(66, 66, 66)
@@ -230,13 +229,13 @@ import javax.swing.JOptionPane;
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Salir)))
                 .addContainerGap())
+            .addComponent(tituloPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(tituloPrincipal)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -292,7 +291,7 @@ import javax.swing.JOptionPane;
         if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER){
             if(txtIdPersona.getText().trim().length() > 0 ){
             
-            ConsultarCliente("id", txtIdPersona.getText().trim());
+            ConsultarPersona("id", txtIdPersona.getText().trim());
             }
         else{
             JOptionPane.showConfirmDialog(null,"se necesita un valor ID para buscar coincidencias...", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -319,9 +318,16 @@ import javax.swing.JOptionPane;
     }//GEN-LAST:event_txtNroDocumentoActionPerformed
 
     private void txtNroDocumentoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNroDocumentoKeyPressed
+      
+        
         if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER){
-            ConsultarCliente("documento", txtNroDocumento.getText().trim());
+            if(txtNroDocumento.getText().trim().length() > 0 ){
+            ConsultarPersona("documento", txtNroDocumento.getText().trim());
+        }else{
+            JOptionPane.showConfirmDialog(null,"se necesita un valor Numero Documento para buscar coincidencias...", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
+        }
+        
     }//GEN-LAST:event_txtNroDocumentoKeyPressed
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
