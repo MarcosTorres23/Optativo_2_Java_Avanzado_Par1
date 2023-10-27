@@ -31,6 +31,11 @@ public class Personas_servicios {
         }
         return "Ocurrió algún error, contactese con el Administrador";
     }
+    public String eliminarpersonaporId(int id){
+       
+            return personasDB.eliminarpersona(id);
+        
+    }
 
 
     public Persona_modelo consultarPersonaPorId(int id){
@@ -39,6 +44,7 @@ public class Personas_servicios {
     public Persona_modelo consultarPersonaPorDocumento(int documento){
         return  personasDB.consultarPersonaPorDocumento(documento);
     }
+  
 
     
     private boolean validarDatos(Persona_modelo persona) {

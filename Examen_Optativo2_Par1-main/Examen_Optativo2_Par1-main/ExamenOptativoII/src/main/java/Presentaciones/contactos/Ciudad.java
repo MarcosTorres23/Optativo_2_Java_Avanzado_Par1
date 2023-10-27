@@ -37,6 +37,10 @@ private void cargarDato(Ciudad_modelo model){
         txtdepartamento.setText(model.Departamento);
         txtpostal.setText(model.Codigopostal);
     }
+ public void actualizar( ){
+         String sql="update ciudad set nombre '"+txtnombre.getText()+txtdepartamento+ txtpostal+" WHERE id_ciudad = "+txtid+"'" ;
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -112,7 +116,7 @@ private void cargarDato(Ciudad_modelo model){
                         .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(197, 197, 197)
+                                .addGap(204, 204, 204)
                                 .addComponent(cancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(44, 44, 44)
                                 .addComponent(salir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

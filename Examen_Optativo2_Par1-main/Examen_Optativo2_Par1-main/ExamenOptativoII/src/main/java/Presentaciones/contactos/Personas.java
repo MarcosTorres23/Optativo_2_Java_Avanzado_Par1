@@ -38,6 +38,15 @@ import javax.swing.JOptionPane;
         }
         
     }
+    private void eliminarPersona(String filtrarPor, String filtro){
+         switch (filtrarPor) {
+            case "id":
+        personaService.eliminarpersonaporId(Integer.parseInt(filtro));
+        default:
+                throw new AssertionError();
+        }
+        
+    }
     
     private void cargarDatos(Persona_modelo model){
         txtNombre.setText(model.Nombre);

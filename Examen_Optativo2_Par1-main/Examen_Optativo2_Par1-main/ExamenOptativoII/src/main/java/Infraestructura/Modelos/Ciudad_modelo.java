@@ -10,7 +10,7 @@ package Infraestructura.Modelos;
  */
 public class Ciudad_modelo {
     
-     public int Idciudad;
+    public int Idciudad;
     public String Nombre_ciudad;
     public String Departamento;
     public String Codigopostal;

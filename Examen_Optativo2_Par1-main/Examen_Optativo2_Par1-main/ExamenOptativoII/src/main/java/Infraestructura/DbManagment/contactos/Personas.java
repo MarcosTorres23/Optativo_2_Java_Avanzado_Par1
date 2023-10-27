@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class Personas {
 
 
-    private final ConeccionDB conexion;
+    private  ConeccionDB conexion;
 
     public Personas(String userBD, String passDB, String hostDB, String portDB, String dataBase){
         conexion = new ConeccionDB(userBD, passDB, hostDB, portDB, dataBase);
@@ -122,6 +122,18 @@ public class Personas {
             throw new RuntimeException(e);
         }
         return null;
+    }
+     public String eliminarpersona(int id){
+
+        try {
+            conexion.setQuerySQL(conexion.conexionDB().createStatement());
+            boolean execute = conexion.getQuerySQL().execute("DELETE FROM personas" +
+                    " Where id_personas = '" + id+ "'");
+            conexion.conexionDB().close();
+            return "Los datos de la persona fueron eliminados correctamente!!!";
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     
