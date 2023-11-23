@@ -24,5 +24,12 @@ public class Usuario_servicios {
     public Usuarios_modelo autenticar(String usuario){
         return usuariosDB.Autenticar(usuario);
     }
-    
+
+    public void registrarUsuario(Usuarios_modelo usuario){
+        usuariosDB.registrarUsuario(usuario);
+    }
+    public void actualizarUsuario(Usuarios_modelo usuario){
+        
+        usuariosDB.modificarPersona(usuario);
+    }
 }

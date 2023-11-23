@@ -18,6 +18,7 @@ public class Cuentas extends javax.swing.JFrame {
     /**
      * Creates new form Cuentas
      */
+    private Cuentas_modelo cuentas;
     public Cuentas() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -34,13 +35,16 @@ public class Cuentas extends javax.swing.JFrame {
         }    
 }
 private void cargarDato(Cuentas_modelo model){
-        txtnumcuenta.setText(model.NroCuenta);
-        txtcuenta.setText(model.TipoCuenta);
-        txtestado.setText(model.Estado);
-        txtnrocontrato.setText(model.NroContrato);
-        txtpromedio.setText(model.PromedioAcreditacion);
-        txtmoneda.setText(model.Moneda);
-        fecha.setDate(model.FechaAlta);
+        txtnumcuenta.setText(model.getNroCuenta());
+        txtcuenta.setText(model.getTipoCuenta());
+        txtestado.setText(model.getEstado());
+        txtnrocontrato.setText(model.getNroContrato());
+        txtpromedio.setText(model.getPromedioAcreditacion());
+        txtmoneda.setText(model.getMoneda());
+        fecha.setDate(model.getFechaAlta());
+        txtidcuenta.setText(model.getIdCuenta());
+        txtsaldo.setText(model.getSaldo());
+        txtmantenimiento.setText(model.getCostoMantenimiento());
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,6 +61,10 @@ private void cargarDato(Cuentas_modelo model){
         txtpromedio.setText("");
         txtmoneda.setText("");
         fecha.setDate(null);
+        txtidcuenta.setText("");
+        txtsaldo.setText("");
+        txtmantenimiento.setText("");
+        
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -80,6 +88,15 @@ private void cargarDato(Cuentas_modelo model){
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         fecha = new com.toedter.calendar.JDateChooser();
+        jLabel10 = new javax.swing.JLabel();
+        txtidcuenta = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txtsaldo = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        txtmantenimiento = new javax.swing.JTextField();
+        Insertar = new javax.swing.JButton();
+        Actualizar = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cuentas Consultas");
@@ -125,25 +142,50 @@ private void cargarDato(Cuentas_modelo model){
             }
         });
 
-        fecha.setEnabled(false);
+        jLabel10.setText("ID Cuenta");
+
+        jLabel11.setText("Saldo");
+
+        jLabel12.setText("Costo Mantenemiento");
+
+        Insertar.setText("Insertar");
+        Insertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InsertarActionPerformed(evt);
+            }
+        });
+
+        Actualizar.setText("Actualizar");
+        Actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarActionPerformed(evt);
+            }
+        });
+
+        Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(142, 142, 142)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(242, 242, 242)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE))
+                        .addGap(160, 160, 160)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel12)))
+                .addContainerGap(215, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(jLabel7)
                             .addComponent(jLabel8)
@@ -152,50 +194,80 @@ private void cargarDato(Cuentas_modelo model){
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addGap(45, 45, 45)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtid)
-                            .addComponent(txtnumcuenta)
-                            .addComponent(txtcuenta)
-                            .addComponent(txtestado)
-                            .addComponent(txtnrocontrato)
-                            .addComponent(txtpromedio)
-                            .addComponent(txtmoneda)
-                            .addComponent(fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11))
+                        .addGap(45, 45, 45))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Actualizar)
+                        .addGap(18, 18, 18)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Insertar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Eliminar)
+                        .addGap(39, 39, 39)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8))
+                    .addComponent(txtid)
+                    .addComponent(txtnumcuenta)
+                    .addComponent(txtcuenta)
+                    .addComponent(txtestado)
+                    .addComponent(txtnrocontrato)
+                    .addComponent(txtpromedio)
+                    .addComponent(txtmoneda)
+                    .addComponent(fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtidcuenta)
+                    .addComponent(txtsaldo)
+                    .addComponent(txtmantenimiento))
                 .addGap(15, 15, 15))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(txtidcuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtnumcuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtcuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtcuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(txtsaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(txtestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel7))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtnrocontrato, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(txtmantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtpromedio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -203,11 +275,15 @@ private void cargarDato(Cuentas_modelo model){
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(txtmoneda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addGap(27, 27, 27))
+                    .addComponent(Insertar)
+                    .addComponent(Actualizar)
+                    .addComponent(Eliminar))
+                .addGap(35, 35, 35)
+                .addComponent(jButton3)
+                .addContainerGap())
         );
 
         pack();
@@ -236,6 +312,63 @@ private void cargarDato(Cuentas_modelo model){
               // TODO add your handling code here:
     }     
     }//GEN-LAST:event_txtidKeyPressed
+
+    private void InsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertarActionPerformed
+        // TODO add your handling code here:
+        
+        int confirmar = JOptionPane.showConfirmDialog(null, "Deseas Agregar Nueva cuenta" );
+        if(confirmar==JOptionPane.YES_OPTION){
+            Cuentas_modelo cuentas=new Cuentas_modelo();
+            cuentas.setIdCliente(txtid.getText());
+            cuentas.setIdCuenta(txtidcuenta.getText());
+            cuentas.setNroCuenta(txtnumcuenta.getText());
+            cuentas.setEstado(txtestado.getText());
+            cuentas.setTipoCuenta(txtcuenta.getText());
+            cuentas.setMoneda(txtmoneda.getText());
+            cuentas.setNroContrato(txtnrocontrato.getText());
+            cuentas.setPromedioAcreditacion(txtpromedio.getText());
+            cuentas.setSaldo(txtsaldo.getText());
+            cuentas.setCostoMantenimiento(txtmantenimiento.getText());
+            cuentas.setFechaAlta(fecha.getDate());
+           
+
+
+            cuentasService.registrarCuenta(cuentas);
+        }
+    }//GEN-LAST:event_InsertarActionPerformed
+
+    private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
+        // TODO add your handling code here:
+        int confirmar = JOptionPane.showConfirmDialog(null, "Deseas Actualizar la  cuenta" );
+        if(confirmar==JOptionPane.YES_OPTION){
+            Cuentas_modelo cuentas=new Cuentas_modelo();
+            cuentas.setIdCliente(txtid.getText());
+            cuentas.setIdCuenta(txtidcuenta.getText());
+            cuentas.setNroCuenta(txtnumcuenta.getText());
+            cuentas.setEstado(txtestado.getText());
+            cuentas.setTipoCuenta(txtcuenta.getText());
+            cuentas.setMoneda(txtmoneda.getText());
+            cuentas.setNroContrato(txtnrocontrato.getText());
+            cuentas.setPromedioAcreditacion(txtpromedio.getText());
+            cuentas.setSaldo(txtsaldo.getText());
+            cuentas.setCostoMantenimiento(txtmantenimiento.getText());
+            cuentas.setFechaAlta(fecha.getDate());
+    
+            cuentasService.modificarCuenta(cuentas);
+        }
+        
+    }//GEN-LAST:event_ActualizarActionPerformed
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        // TODO add your handling code here:
+        int confirmar = JOptionPane.showConfirmDialog(null, "Deseas Eliminar los datos de la cuenta " +txtidcuenta.getText());
+        if(confirmar==JOptionPane.YES_OPTION){
+        int s=Integer.parseInt(txtidcuenta.getText().trim());
+        cuentasService.eliminarcuentaporId(s); 
+        JOptionPane.showMessageDialog(null,"se elimino correctamente");
+        
+        }
+    }//GEN-LAST:event_EliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,10 +406,16 @@ private void cargarDato(Cuentas_modelo model){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Actualizar;
+    private javax.swing.JButton Eliminar;
+    private javax.swing.JButton Insertar;
     private com.toedter.calendar.JDateChooser fecha;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -288,9 +427,12 @@ private void cargarDato(Cuentas_modelo model){
     private javax.swing.JTextField txtcuenta;
     private javax.swing.JTextField txtestado;
     private javax.swing.JTextField txtid;
+    private javax.swing.JTextField txtidcuenta;
+    private javax.swing.JTextField txtmantenimiento;
     private javax.swing.JTextField txtmoneda;
     private javax.swing.JTextField txtnrocontrato;
     private javax.swing.JTextField txtnumcuenta;
     private javax.swing.JTextField txtpromedio;
+    private javax.swing.JTextField txtsaldo;
     // End of variables declaration//GEN-END:variables
 }

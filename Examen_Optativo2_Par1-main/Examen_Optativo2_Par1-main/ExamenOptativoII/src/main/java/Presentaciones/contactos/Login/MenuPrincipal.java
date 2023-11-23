@@ -9,6 +9,7 @@ import Presentaciones.contactos.Clientes;
 import Presentaciones.contactos.Cuentas;
 import Presentaciones.contactos.Movimientos;
 import Presentaciones.contactos.Personas;
+import Servicios.auth.RegistroUsuario;
 
 /**
  *
@@ -33,6 +34,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
         jToggleButton1 = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -41,7 +45,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         movimientomenu = new javax.swing.JMenuItem();
         clientemenu = new javax.swing.JMenuItem();
         cuentasmenu = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+
+        jMenu3.setText("File");
+        jMenuBar2.add(jMenu3);
+
+        jMenu4.setText("Edit");
+        jMenuBar2.add(jMenu4);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Principal");
@@ -106,6 +117,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(cuentasmenu);
 
+        jMenuItem1.setText("Usuarios");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
         jMenuBar1.add(jMenu1);
         jMenuBar1.add(jMenu2);
 
@@ -134,6 +153,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void personamenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personamenuActionPerformed
         // TODO add your handling code here:
         new Personas().setVisible(true);
+        
+      
     }//GEN-LAST:event_personamenuActionPerformed
 
     private void ciudadmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ciudadmenuActionPerformed
@@ -160,6 +181,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        new RegistroUsuario().setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,7 +228,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem cuentasmenu;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JMenuItem movimientomenu;
     private javax.swing.JMenuItem personamenu;

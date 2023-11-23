@@ -25,18 +25,18 @@ public class Ciudad {
 
         try {
             conexion.setQuerySQL(conexion.conexionDB().createStatement());
-            boolean execute = conexion.getQuerySQL().execute("INSERT INTO ciudades( "+
-                    "'id_ciuda' ,"+
-                    " 'ciudad ', " +
-                    "'departamento' , " +
-                    "'codigo_postal', )" +
-                    "values(" +
-                    ciudad.Idciudad+ ","+
-                    ciudad.Nombre_ciudad + ","+
-                    ciudad.Departamento  + "," +
-                    ciudad.Codigopostal  +"))");
+            boolean execute = conexion.getQuerySQL().execute("INSERT INTO ciudades("+
+                    " id_ciudad ,"+
+                    " ciudad , " +
+                    "departamento , " +
+                    "code_postal )" +
+                    "values('" +
+                    ciudad.getIdciudad()+ "' , '" +
+                    ciudad.getNombre_ciudad() +  "' , '" +
+                    ciudad.getDepartamento() +  "' , '" +
+                    ciudad.getCodigopostal()  +"' )");
             conexion.conexionDB().close();
-            return "La Ciudad " + ciudad.Nombre_ciudad + " fue registrada exitosamente";
+            return "La Ciudad " + ciudad.getNombre_ciudad() + " fue registrada exitosamente";
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -45,13 +45,14 @@ public class Ciudad {
 
         try {
             conexion.setQuerySQL(conexion.conexionDB().createStatement());
-            boolean execute = conexion.getQuerySQL().execute("UPDATE ciudades SET " +
-                    "ciudad' = '" + ciudad.Nombre_ciudad + "'," +
-                    "departamento = '" + ciudad.Departamento+ "'," +
-                    "tipo_documento = '" + ciudad.Codigopostal + "'," +
-                    "' Where ciudad.id_ciudad = " + ciudad.Idciudad);
+            boolean execute = conexion.getQuerySQL().execute("UPDATE ciudades "
+                    + "SET " +
+                    "ciudad = '" + ciudad.getNombre_ciudad() + "'," +
+                    " departamento = '" + ciudad.getDepartamento()+ "'," +
+                    "code_postal = '" + ciudad.getCodigopostal() + "'" +
+                    " Where ciudades.id_ciudad = " + ciudad.getIdciudad());
             conexion.conexionDB().close();
-            return "Los datos de la ciudad " + ciudad.Nombre_ciudad + " fue modificado exitosamente";
+            return "Los datos de la ciudad " + ciudad.getIdciudad()+ " fue modificado exitosamente";
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -62,9 +63,10 @@ public class Ciudad {
             conexion.setQuerySQL(conexion.conexionDB().createStatement());
             conexion.setResultadoQuery(conexion.getQuerySQL().executeQuery("Select * from ciudades where id_ciudad = " + id));
             if(conexion.getResultadoQuery().next()){
-                ciudad.Nombre_ciudad = conexion.getResultadoQuery().getString("ciudad");    
-                ciudad.Departamento = conexion.getResultadoQuery().getString("departamento");
-                ciudad.Codigopostal = conexion.getResultadoQuery().getString("code_postal");
+                ciudad.setIdciudad( conexion.getResultadoQuery().getString("id_ciudad"));
+                ciudad.setNombre_ciudad(conexion.getResultadoQuery().getString("ciudad"));    
+                ciudad.setDepartamento(conexion.getResultadoQuery().getString("departamento"));
+                ciudad.setCodigopostal(conexion.getResultadoQuery().getString("code_postal"));
                 
 /*                ciudad.Codigopostal = conexion.getResultadoQuery().getInt("codigo_postal"); Definido como numeric
 */
@@ -75,6 +77,17 @@ public class Ciudad {
         }
         return null;
     }
+       public String eliminarciudad(int id){
+
+        try {
+            conexion.setQuerySQL(conexion.conexionDB().createStatement());
+            boolean execute = conexion.getQuerySQL().execute("DELETE FROM ciudades" +
+                    " Where id_ciudad = '" + id+ "'");
+            conexion.conexionDB().close();
+            return "Los datos del cliente fueron eliminados correctamente!!!";
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }}
       
      
 }

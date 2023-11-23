@@ -31,6 +31,11 @@ public class Ciudad_servicios {
         }
         return "Ocurrió algún error, contactese con el Administrador";
     }
+    public String eliminarciudad(int id){
+       
+            return ciudadDB.eliminarciudad(id);
+        
+    }
 
 
     public Ciudad_modelo consultarCiudadPorId(int id){
@@ -39,9 +44,9 @@ public class Ciudad_servicios {
 
     private boolean validarDatos(Ciudad_modelo ciudad) {
         try {
-        if(ciudad.Nombre_ciudad.trim().isEmpty())
+        if(ciudad.getNombre_ciudad().trim().isEmpty())
             throw new Exception("El nombre de la ciudad no debe estar vacío");
-        else if (ciudad.Nombre_ciudad.trim().length() < 3) {
+        else if (ciudad.getNombre_ciudad().trim().length() < 3) {
             throw new Exception("El nombre de la ciudad no tiene la longitud necesaria");
         }
 

@@ -41,7 +41,7 @@ public class Personas_servicios {
     public Persona_modelo consultarPersonaPorId(int id){
         return  personasDB.consultarPersona(id);
     }
-    public Persona_modelo consultarPersonaPorDocumento(int documento){
+        public Persona_modelo consultarPersonaPorDocumento(int documento){
         return  personasDB.consultarPersonaPorDocumento(documento);
     }
   
@@ -49,9 +49,9 @@ public class Personas_servicios {
     
     private boolean validarDatos(Persona_modelo persona) {
         try {
-        if(persona.Nombre.trim().isEmpty())
+        if(persona.getNombre().trim().isEmpty())
             throw new Exception("El nombre no debe estar vacío");
-        else if (persona.Nombre.trim().length() < 3) {
+        else if (persona.getNombre().trim().length() < 3) {
             throw new Exception("El nombre no tiene la longitud necesaria");
         }
 

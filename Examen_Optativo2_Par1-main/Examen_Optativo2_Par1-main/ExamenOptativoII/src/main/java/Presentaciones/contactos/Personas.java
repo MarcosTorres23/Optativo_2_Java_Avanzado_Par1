@@ -20,6 +20,8 @@ import javax.swing.JOptionPane;
     /**
      * Creates new form Personas
      */
+    
+     private Persona_modelo personas;
     public Personas() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -49,14 +51,16 @@ import javax.swing.JOptionPane;
     }
     
     private void cargarDatos(Persona_modelo model){
-        txtNombre.setText(model.Nombre);
-        txtApellido.setText(model.Apellido);
-        cbTipoDocumento.setSelectedItem(model.TipoDocumento);
-        txtNroDocumento.setText(model.NroDocumento);
-        txtDireccion.setText(model.Direccion);
-        txtEmail.setText(model.Email);
-        txtCelular.setText(model.Celular);
-        dateFechaNacimiento.setDate(model.fecha);
+        txtIdPersona.setText(model.getIdPersona());
+        txtNombre.setText(model.getNombre());
+        txtApellido.setText(model.getApellido());
+        cbTipoDocumento.setSelectedItem(model.getTipoDocumento());
+        txtNroDocumento.setText(model.getNroDocumento());
+        txtDireccion.setText(model.getDireccion());
+        txtEmail.setText(model.getEmail());
+        txtCelular.setText(model.getCelular());
+        dateFechaNacimiento.setDate(model.getFecha());
+        txtidciudad.setText(model.getIdCiudad());
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -71,7 +75,7 @@ import javax.swing.JOptionPane;
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDireccion = new javax.swing.JTextArea();
-        botonAceptar = new javax.swing.JButton();
+        Insertar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
@@ -87,9 +91,18 @@ import javax.swing.JOptionPane;
         etiquetaPersona = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         dateFechaNacimiento = new com.toedter.calendar.JDateChooser();
+        jLabel9 = new javax.swing.JLabel();
+        txtidciudad = new javax.swing.JTextField();
+        Actualizar = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        txtIdPersona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdPersonaActionPerformed(evt);
+            }
+        });
         txtIdPersona.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtIdPersonaKeyPressed(evt);
@@ -137,12 +150,12 @@ import javax.swing.JOptionPane;
         txtDireccion.setRows(5);
         jScrollPane1.setViewportView(txtDireccion);
 
-        botonAceptar.setBackground(new java.awt.Color(0, 144, 197));
-        botonAceptar.setForeground(new java.awt.Color(255, 255, 255));
-        botonAceptar.setText("Aceptar");
-        botonAceptar.addActionListener(new java.awt.event.ActionListener() {
+        Insertar.setBackground(new java.awt.Color(0, 144, 197));
+        Insertar.setForeground(new java.awt.Color(255, 255, 255));
+        Insertar.setText("Insertar");
+        Insertar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAceptarActionPerformed(evt);
+                InsertarActionPerformed(evt);
             }
         });
 
@@ -169,7 +182,7 @@ import javax.swing.JOptionPane;
         });
 
         cbTipoDocumento.setFont(new java.awt.Font("Segoe UI Black", 2, 14)); // NOI18N
-        cbTipoDocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar el tipo de documento", "Cedula de Identidad", "Pasaporte", "Licencia" }));
+        cbTipoDocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar el tipo de documento", "C.I.", "Pasaporte", "Licencia" }));
         cbTipoDocumento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbTipoDocumentoActionPerformed(evt);
@@ -185,27 +198,41 @@ import javax.swing.JOptionPane;
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 2, 14)); // NOI18N
         jLabel4.setText("Numero Documento");
 
-        dateFechaNacimiento.setEnabled(false);
+        jLabel9.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        jLabel9.setText("ID Ciudad");
+
+        Actualizar.setBackground(new java.awt.Color(0, 102, 204));
+        Actualizar.setForeground(new java.awt.Color(255, 255, 255));
+        Actualizar.setText("Actualizar");
+        Actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarActionPerformed(evt);
+            }
+        });
+
+        Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tituloPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(66, 66, 66)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbTipoDocumento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbTipoDocumento, 0, 546, Short.MAX_VALUE)
                             .addComponent(txtNroDocumento)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,25 +247,34 @@ import javax.swing.JOptionPane;
                                 .addComponent(txtIdPersona)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnModelBuscarPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(Eliminar)
+                        .addGap(29, 29, 29)
+                        .addComponent(Actualizar)
+                        .addGap(27, 27, 27)
+                        .addComponent(Insertar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Cancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Salir))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
-                            .addComponent(jLabel8))
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel5))
                         .addGap(42, 42, 42)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
                             .addComponent(txtEmail)
                             .addComponent(txtCelular)
-                            .addComponent(dateFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(botonAceptar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Cancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Salir)))
+                            .addComponent(dateFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtidciudad, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
-            .addComponent(tituloPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,11 +321,17 @@ import javax.swing.JOptionPane;
                         .addComponent(jLabel8)
                         .addGap(6, 6, 6))
                     .addComponent(dateFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonAceptar)
+                    .addComponent(jLabel9)
+                    .addComponent(txtidciudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Insertar)
                     .addComponent(Cancelar)
-                    .addComponent(Salir))
+                    .addComponent(Salir)
+                    .addComponent(Actualizar)
+                    .addComponent(Eliminar))
                 .addContainerGap())
         );
 
@@ -319,6 +361,7 @@ import javax.swing.JOptionPane;
         txtCelular.setText("");
         txtNroDocumento.setText("");
         dateFechaNacimiento.setDate(null);
+        txtidciudad.setText(" ");
 
         
     }
@@ -350,9 +393,28 @@ import javax.swing.JOptionPane;
 // TODO add your handling code here:
     }//GEN-LAST:event_SalirActionPerformed
 
-    private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
-        JOptionPane.showMessageDialog(null, "Presionaste el boton Aceptar");
-    }//GEN-LAST:event_botonAceptarActionPerformed
+    private void InsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertarActionPerformed
+        
+         int confirmar = JOptionPane.showConfirmDialog(null, "Deseas Aggregar a " +txtNombre.getText());
+        if(confirmar==JOptionPane.YES_OPTION){
+            Persona_modelo personas=new Persona_modelo();
+           
+            personas.setNombre(txtNombre.getText());
+            personas.setApellido(txtApellido.getText());
+            personas.setCelular(txtCelular.getText());
+            personas.setDireccion(txtDireccion.getText());
+            personas.setEmail(txtEmail.getText());
+            personas.setNroDocumento(txtNroDocumento.getText());
+            personas.setTipoDocumento (cbTipoDocumento.getSelectedItem().toString());
+            personas.setFecha(dateFechaNacimiento.getDate());
+            personas.setIdCiudad(txtidciudad.getText());
+            personas.setIdPersona(txtIdPersona.getText());
+            
+     
+           
+            personaService.registrarPersona(personas);
+        }
+    }//GEN-LAST:event_InsertarActionPerformed
 
     private void btnModelBuscarPersonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModelBuscarPersonasActionPerformed
         new BusquedaPersona(null, true).setVisible(true);
@@ -361,6 +423,44 @@ import javax.swing.JOptionPane;
     private void cbTipoDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoDocumentoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbTipoDocumentoActionPerformed
+
+    private void txtIdPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdPersonaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdPersonaActionPerformed
+
+    private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
+        // TODO add your handling code here:
+        int confirmar = JOptionPane.showConfirmDialog(null, "Deseas Actualizar los datos de " +txtNombre.getText());
+        if(confirmar==JOptionPane.YES_OPTION){
+            Persona_modelo personas=new Persona_modelo();
+           
+            personas.setNombre(txtNombre.getText());
+            personas.setApellido(txtApellido.getText());
+            personas.setCelular(txtCelular.getText());
+            personas.setDireccion(txtDireccion.getText());
+            personas.setEmail(txtEmail.getText());
+            personas.setNroDocumento(txtNroDocumento.getText());
+            personas.setTipoDocumento (cbTipoDocumento.getSelectedItem().toString());
+            personas.setFecha(dateFechaNacimiento.getDate());
+            personas.setIdCiudad(txtidciudad.getText());
+            personas.setIdPersona(txtIdPersona.getText());
+     
+           
+            personaService.modificarPersona(personas);
+        }
+        
+    }//GEN-LAST:event_ActualizarActionPerformed
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        // TODO add your handling code here:
+        int confirmar = JOptionPane.showConfirmDialog(null, "Deseas Eliminar los datos de " +txtNombre.getText());
+        if(confirmar==JOptionPane.YES_OPTION){
+        int s=Integer.parseInt(txtIdPersona.getText().trim());
+        personaService.eliminarpersonaporId(s); 
+        JOptionPane.showConfirmDialog(null,"se elimino correctamente");
+        
+        }
+    }//GEN-LAST:event_EliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -398,9 +498,11 @@ import javax.swing.JOptionPane;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Actualizar;
     private javax.swing.JButton Cancelar;
+    private javax.swing.JButton Eliminar;
+    private javax.swing.JButton Insertar;
     private javax.swing.JButton Salir;
-    private javax.swing.JButton botonAceptar;
     private javax.swing.JButton btnModelBuscarPersonas;
     private javax.swing.JComboBox<String> cbTipoDocumento;
     private com.toedter.calendar.JDateChooser dateFechaNacimiento;
@@ -413,6 +515,7 @@ import javax.swing.JOptionPane;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel tituloPrincipal;
@@ -423,5 +526,6 @@ import javax.swing.JOptionPane;
     private javax.swing.JTextField txtIdPersona;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNroDocumento;
+    private javax.swing.JTextField txtidciudad;
     // End of variables declaration//GEN-END:variables
 }

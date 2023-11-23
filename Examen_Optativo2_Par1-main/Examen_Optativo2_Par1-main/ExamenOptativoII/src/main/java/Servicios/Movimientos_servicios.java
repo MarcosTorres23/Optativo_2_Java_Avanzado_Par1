@@ -24,7 +24,12 @@ public class Movimientos_servicios {
         return "Ocurrió algún error, contactese con el Administrador";
     }
 
-    public String modificarCuenta(Movimientos_models movimiento){
+    public String eliminarpersonaporId(int id){
+       
+            return movimientosDB.eliminarmovimiento(id);
+        
+    }
+    public String modificarMovimientos(Movimientos_models movimiento){
         if(validarDatos(movimiento)){
             return movimientosDB.modificarMovimiento(movimiento);
         }
@@ -38,9 +43,9 @@ public class Movimientos_servicios {
 
     private boolean validarDatos(Movimientos_models movimiento) {
         try {
-        if(movimiento.TipoMovimiento.trim().isEmpty())
+        if(movimiento.getTipoMovimiento().trim().isEmpty())
             throw new Exception("El Tipo de Movimiento no debe estar vacío");
-        else if( movimiento.TipoMovimiento.trim().length() < 3) {
+        else if( movimiento.getTipoMovimiento().trim().length() < 3) {
             throw new Exception("El Tipo de Movimiento no tiene la longitud necesaria");
         }
 

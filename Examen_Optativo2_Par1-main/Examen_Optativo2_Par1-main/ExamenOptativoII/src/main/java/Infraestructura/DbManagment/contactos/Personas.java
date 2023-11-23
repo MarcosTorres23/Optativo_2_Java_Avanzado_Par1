@@ -23,28 +23,33 @@ public class Personas {
 
         try {
             conexion.setQuerySQL(conexion.conexionDB().createStatement());
-            boolean execute = conexion.getQuerySQL().execute("INSERT INTO personas("+"'id_ciudad', "+
-                    "'nombre', " +
-                    "'apellido', " +
-                    "'tipo_documento', " +
-                    "'nro_documento', " +
-                    "'direccion'," +
-                    "'celular', " +
-                    "'email', " +
-                    "'estado') " +
+            boolean execute = conexion.getQuerySQL().execute("INSERT INTO personas("+
+                    "id_personas,"+
+                  
+                    "id_ciudad, "+
+                    "nombre, " +
+                    "apellido, " +
+                    "tipo_documento, " +
+                    "nro_documento, " +
+                    "direccion," +
+                    "celular, " +
+                    "email, " +
+                    "estado, " +
+                    "fechanacimiento ) " +
                     "values('" +
-                    persona.IdCiudad +"','" +
-                    persona.Nombre + "', '" +
-                    persona.Apellido + "', '" +
-                    persona.TipoDocumento + "', '" +
-                    persona.NroDocumento + "', '" +
-                    persona.Direccion + "', '" +
-                    persona.Celular + "', '" +
-                    persona.Email + "', '" +
-                    persona.estado + "', '"+
-                    persona.fecha  +"'))");
+                    persona.getIdPersona()+"','"+
+                    persona.getIdCiudad() +"','" +
+                    persona.getNombre() + "', '" +
+                    persona.getApellido() + "', '" +
+                    persona.getTipoDocumento() + "', '" +
+                    persona.getNroDocumento() + "', '" +
+                    persona.getDireccion ()+ "', '" +
+                    persona.getCelular ()+ "', '" +
+                    persona.getEmail() + "', '" +
+                    persona.getEstado() + "', '"+
+                    persona.getFecha () +"')");
             conexion.conexionDB().close();
-            return "La persona " + persona.Nombre + " fue registrada exitosamente";
+            return "La persona " + persona.getNombre() + " fue registrada exitosamente";
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -55,19 +60,19 @@ public class Personas {
         try {
             conexion.setQuerySQL(conexion.conexionDB().createStatement());
             boolean execute = conexion.getQuerySQL().execute("UPDATE personas SET " +
-                    "'id_ciudad = '" + persona.IdCiudad + "','" +
-                    " 'nombre = '" + persona.Nombre + "',' " +
-                    " ' apellido = '" + persona.Apellido + "','" +
-                    " ' tipo_documento = '" + persona.TipoDocumento + "', '" +
-                    " 'nro_documento = '" + persona.NroDocumento + "', '" +
-                    " 'direccion = '" + persona.Direccion + "', '" +
-                    " 'celular = '" + persona.Celular + "', '" +
-                    " 'email = '" + persona.Email + "',' "+
-                    " 'estado = '" + persona.estado + "',' "+
-                    " 'fechanacimiento = '" + persona.fecha + "',' "
-                    + "' Where personas.idPersona = '" + persona.IdPersona);
+                   
+                    " nombre = '" + persona.getNombre() + "', " +
+                    " apellido = '" + persona.getApellido() + "'," +
+                    " tipo_documento = '" + persona.getTipoDocumento() + "', " +
+                    " nro_documento = " + persona.getNroDocumento() + ", " +
+                    " direccion = '" + persona.getDireccion() + "', " +
+                    " celular = '" + persona.getCelular() + "', " +
+                    " email = '" + persona.getEmail() + "', "+
+                    " estado = '" + persona.getEstado() + "',"+
+                    " fechanacimiento = '" + persona.getFecha() + "'"
+                    + " Where personas.id_personas = " + persona.getIdPersona());
             conexion.conexionDB().close();
-            return "Los datos de la persona " + persona.Nombre + " fue modificado exitosamente";
+            return "Los datos de la persona " + persona.getNombre() + " fue modificado exitosamente";
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -79,16 +84,17 @@ public class Personas {
             conexion.setQuerySQL(conexion.conexionDB().createStatement());
             conexion.setResultadoQuery(conexion.getQuerySQL().executeQuery("Select * from personas where id_personas = " + id ));
             if(conexion.getResultadoQuery().next()){
-                persona.IdCiudad= conexion.getResultadoQuery().getInt("id_ciudad");
-                persona.Nombre = conexion.getResultadoQuery().getString("nombre");
-                persona.Apellido = conexion.getResultadoQuery().getString("apellido");
-                persona.TipoDocumento= conexion.getResultadoQuery().getString("tipo_documento");
-                persona.NroDocumento= conexion.getResultadoQuery().getString("nro_documento");
-                persona.Direccion= conexion.getResultadoQuery().getString("direccion");
-                persona.Celular= conexion.getResultadoQuery().getString("celular");
-                persona.Email= conexion.getResultadoQuery().getString("email");
-                persona.estado= conexion.getResultadoQuery().getString("estado");
-                persona.fecha= conexion.getResultadoQuery().getDate("fechanacimiento");
+                persona.setIdPersona(conexion.getResultadoQuery().getString("id_personas"));
+                persona.setIdCiudad( conexion.getResultadoQuery().getString("id_ciudad"));
+                persona.setNombre (conexion.getResultadoQuery().getString("nombre"));
+                persona.setApellido(conexion.getResultadoQuery().getString("apellido"));
+                persona.setTipoDocumento( conexion.getResultadoQuery().getString("tipo_documento"));
+                persona.setNroDocumento(conexion.getResultadoQuery().getString("nro_documento"));
+                persona.setDireccion(conexion.getResultadoQuery().getString("direccion"));
+                persona.setCelular(conexion.getResultadoQuery().getString("celular"));
+                persona.setEmail(conexion.getResultadoQuery().getString("email"));
+                persona.setEstado( conexion.getResultadoQuery().getString("estado"));
+                persona.setFecha(conexion.getResultadoQuery().getDate("fechanacimiento"));
 
                 return persona;
             }
@@ -104,16 +110,16 @@ public class Personas {
             conexion.setQuerySQL(conexion.conexionDB().createStatement());
             conexion.setResultadoQuery(conexion.getQuerySQL().executeQuery("Select * from persona where nro_documento = " + documento));
             if(conexion.getResultadoQuery().next()){
-                persona.IdCiudad= conexion.getResultadoQuery().getInt("id_ciudad");
-                persona.Nombre = conexion.getResultadoQuery().getString("nombre");
-                persona.Apellido = conexion.getResultadoQuery().getString("apellido");
-                persona.TipoDocumento= conexion.getResultadoQuery().getString("tipo_documento");
-                persona.NroDocumento= conexion.getResultadoQuery().getString("nro_documento");
-                persona.Direccion= conexion.getResultadoQuery().getString("direccion");
-                persona.Celular= conexion.getResultadoQuery().getString("celular");
-                persona.Email= conexion.getResultadoQuery().getString("email");
-                persona.estado= conexion.getResultadoQuery().getString("estado");
-                persona.fecha= conexion.getResultadoQuery().getDate("fechanacimiento");
+                persona.setIdCiudad(conexion.getResultadoQuery().getString("id_ciudad"));
+                persona.setNombre(conexion.getResultadoQuery().getString("nombre"));
+                persona.setApellido(conexion.getResultadoQuery().getString("apellido"));
+                persona.setTipoDocumento(conexion.getResultadoQuery().getString("tipo_documento"));
+                persona.setNroDocumento(conexion.getResultadoQuery().getString("nro_documento"));
+                persona.setDireccion(conexion.getResultadoQuery().getString("direccion"));
+                persona.setCelular(conexion.getResultadoQuery().getString("celular"));
+                persona.setEmail(conexion.getResultadoQuery().getString("email"));
+                persona.setEstado(conexion.getResultadoQuery().getString("estado"));
+                persona.setFecha(conexion.getResultadoQuery().getDate("fechanacimiento"));
 
 
                 return persona;
@@ -133,12 +139,6 @@ public class Personas {
             return "Los datos de la persona fueron eliminados correctamente!!!";
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
-    }
-
-    
-    
-    
-}
+        }}}
     
 

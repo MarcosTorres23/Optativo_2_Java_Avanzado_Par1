@@ -25,17 +25,20 @@ public class Cliente {
 
         try {
             conexion.setQuerySQL(conexion.conexionDB().createStatement());
-            boolean execute = conexion.getQuerySQL().execute("INSERT INTO cliente("+ "'id_cliente ', " +
-                    "'departamento' , " +
-                    "'codigo_postal'  )" +
-                    "values(" +
-                    cliente.IdCliente+ " , "+
-                    cliente.IdPersona  + " ," +
-                    cliente.FechaIngreso +" , " +
-                    cliente.Calificacion  +  " , "+
-                    cliente.Estado + ")");
+            boolean execute = conexion.getQuerySQL().execute("INSERT INTO cliente("+ 
+                    "id_cliente , " +
+                    "id_persona , " +
+                    "fecha_ingreso,"+
+                    "calificacion ,"+
+                    "estado)" +
+                    "values('" +
+                    cliente.getIdCliente()+ "' , '"+
+                    cliente.getIdPersona()  + "' , '" +
+                    cliente.getFechaIngreso() +"' , '" +
+                    cliente.getCalificacion()+  "' , '"+
+                    cliente.getEstado() + "')");
             conexion.conexionDB().close();
-            return "La Cliente " + cliente.IdCliente + " fue registrada exitosamente";
+            return "La Cliente " + cliente.getIdCliente() + " fue registrada exitosamente";
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -46,13 +49,13 @@ public class Cliente {
         try {
             conexion.setQuerySQL(conexion.conexionDB().createStatement());
             boolean execute = conexion.getQuerySQL().execute("UPDATE cliente SET " +
-                    "'id_persona =' " + cliente.IdPersona + "',' " +
-                    "'fecha_ingreso  =' " +cliente.FechaIngreso + "',' " +
-                    "'calificacion  =' " + cliente.Calificacion+ "', '" +
-                    "'estado = '" + cliente.Estado+ "', '"
-                    + "' Where cliente.id_cliente = '" + cliente.IdCliente);
+                    
+                    "fecha_ingreso  =' " +cliente.getFechaIngreso()+ "', " +
+                    "calificacion  =' " + cliente.getCalificacion()+ "', " +
+                    "estado = '" + cliente.getEstado()+ "'"
+                    + " Where cliente.id_cliente = " + cliente.getIdCliente());
             conexion.conexionDB().close();
-            return "Los datos de la cliente con id " + cliente.IdCliente + " fue modificado exitosamente";
+            return "Los datos de la cliente con id " + cliente.getIdCliente() + " fue modificado exitosamente";
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -64,11 +67,11 @@ public class Cliente {
             conexion.setQuerySQL(conexion.conexionDB().createStatement());
             conexion.setResultadoQuery(conexion.getQuerySQL().executeQuery("Select * from cliente where id_cliente = " + id));
             if(conexion.getResultadoQuery().next()){
-                cliente.IdCliente = conexion.getResultadoQuery().getInt("id_cliente");
-                cliente.IdPersona = conexion.getResultadoQuery().getInt("id_persona");
-                cliente.FechaIngreso= conexion.getResultadoQuery().getDate("fecha_ingreso");
-                cliente.Calificacion= conexion.getResultadoQuery().getString("calificacion");
-                cliente.Estado = conexion.getResultadoQuery().getString("estado");
+                cliente.setIdCliente(conexion.getResultadoQuery().getString("id_cliente"));
+                cliente.setIdPersona(conexion.getResultadoQuery().getString("id_persona"));
+                cliente.setFechaIngreso(conexion.getResultadoQuery().getDate("fecha_ingreso"));
+                cliente.setCalificacion(conexion.getResultadoQuery().getString("calificacion"));
+                cliente.setEstado(conexion.getResultadoQuery().getString("estado"));
                 
                 return cliente;
             }
@@ -77,5 +80,16 @@ public class Cliente {
         }
         return null;
     }
+       public String eliminarcliente(int id){
+
+        try {
+            conexion.setQuerySQL(conexion.conexionDB().createStatement());
+            boolean execute = conexion.getQuerySQL().execute("DELETE FROM cliente" +
+                    " Where id_cliente = '" + id+ "'");
+            conexion.conexionDB().close();
+            return "Los datos del cliente fueron eliminados correctamente!!!";
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }}
     
 }

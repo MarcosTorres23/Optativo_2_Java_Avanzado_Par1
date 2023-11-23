@@ -30,6 +30,11 @@ public class Cuentas_servicios {
         }
         return "Ocurrió algún error, contactese con el Administrador";
     }
+    public String eliminarcuentaporId(int id){
+       
+            return cuentasDB.eliminarcuentaporid(id);
+        
+    }
 
 
     public Cuentas_modelo consultarCuentaPorId(int id){
@@ -38,9 +43,9 @@ public class Cuentas_servicios {
 
     private boolean validarDatos(Cuentas_modelo cuenta) {
         try {
-        if(cuenta.Estado.trim().isEmpty())
+        if(cuenta.getEstado().trim().isEmpty())
             throw new Exception("El Estado no debe estar vacío");
-        else if (cuenta.Estado.trim().length() < 3) {
+        else if (cuenta.getEstado().trim().length() < 3) {
             throw new Exception("El Estado no tiene la longitud necesaria");
         }
 

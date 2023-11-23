@@ -7,6 +7,7 @@ package optativo2examen;
 import Infraestructura.DbManagment.contactos.Cliente;
 import Infraestructura.Modelos.*;
 import Presentaciones.contactos.Login.Login1;
+import Presentaciones.contactos.Login.MenuPrincipal;
 import Servicios.Ciudad_servicios;
 import Servicios.Cliente_servicios;
 import Servicios.Cuentas_servicios;
@@ -23,7 +24,7 @@ public class ExamenOptativoII {
     
 
      public static void main(String[] args) {
-         new Login1().setVisible(true);
+         new MenuPrincipal().setVisible(true);
 
         Calendar calendario = Calendar.getInstance();
         calendario.set(2023, Calendar.SEPTEMBER, 21);
